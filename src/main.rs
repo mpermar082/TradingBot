@@ -6,6 +6,7 @@
 use clap::Parser;
 use tradingbot::{Result, run};
 
+/// CLI arguments for TradingBot
 #[derive(Parser)]
 #[command(version, about = "TradingBot - A Rust implementation")]
 struct Cli {
@@ -13,16 +14,20 @@ struct Cli {
     #[arg(short, long)]
     verbose: bool,
     
-    /// Input file path
+    /// Path to input file
     #[arg(short, long)]
     input: Option<String>,
     
-    /// Output file path
+    /// Path to output file
     #[arg(short, long)]
     output: Option<String>,
 }
 
+/// Main entry point of the program
 fn main() -> Result<()> {
+    // Parse command line arguments
     let args = Cli::parse();
+    
+    // Run the TradingBot with the parsed arguments
     run(args.verbose, args.input, args.output)
 }
